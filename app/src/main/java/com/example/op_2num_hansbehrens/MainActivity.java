@@ -31,34 +31,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resta = (Button)findViewById(R.id.btnResta);
         multiplicacion = (Button)findViewById(R.id.btnMultiplicacion);
         division = (Button)findViewById(R.id.btnDivision);
+
         suma.setOnClickListener(this);
         resta.setOnClickListener(this);
         multiplicacion.setOnClickListener(this);
         division.setOnClickListener(this);
     }
 
+    /**
+     * Maneja eventos de Click en botones (btnSuma, btnResta, btnMultiplicacion, btnDivision)
+     * @param v : View
+     */
     public void onClick(View v) {
         resultado(v);
     }
 
-    private Integer[] numeros(EditText num1, EditText num2){
-            Integer[] nums = {Integer.parseInt(num1.getText().toString()), Integer.parseInt(num2.getText().toString())};
-            return nums;
-    }
-
+    /**
+     * Realiza la operacion y escribe el resultado,
+     * en caso de obtener un error (error de usuario, division por 0, etc)
+     * escribira "Error"
+     * @param v : View
+     */
     private void resultado(View v){
-        try {
-            Integer[] num = numeros(num1, num2);
-            txtResultado(operacion(v, num));
-        }catch(Exception ex){
+        try{
+            txtResultado(operacion(v, numeros(num1, num2)));
+        }
+        catch(Exception ex) {
             txtResultado("Error");
         }
     }
 
+    /**
+     * Escribe en el TextView "resultado" el resultado o error obtenido
+     * por la operacion
+     * @param resultado : Object
+     */
     private void txtResultado(Object resultado) {
         this.resultado.setText(String.valueOf(resultado));
     }
 
+    /**
+     * Segun el boton que se presiona se realiza la operacion
+     * correspondiente
+     * @param v : View
+     * @param num : Integer[]
+     * @return resultado de la operacion : Integer
+     */
     private Integer operacion(View v, Integer[] num){
         switch (v.getId()){
             case R.id.btnSuma:
@@ -73,4 +91,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return null;
         }
     }
+
+    /**
+     * Convierte los numeros de EditText num1 y num2
+     * a un Array de 2 posiciones con los valores como
+     * Integer
+     * @param num1 : EditText
+     * @param num2 : EditText
+     * @return : Integer[]
+     */
+    private Integer[] numeros(EditText num1, EditText num2){
+        return new Integer[]{Integer.parseInt(num1.getText().toString()), Integer.parseInt(num2.getText().toString())};
+    }
+
 }
