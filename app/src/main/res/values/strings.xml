@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Op_2num_HansBehrens</string>
+    <string name="num1">Numero 1</string>
+    <string name="num2">Numero 2</string>
+    <string name="ingnum">Ingrese Numero</string>
+    <string name="resultado">Resultado:</string>
+    <string name="suma">+</string>
+    <string name="resta">-</string>
+    <string name="multiplicacion">*</string>
+    <string name="division">/</string>
+</resources>
